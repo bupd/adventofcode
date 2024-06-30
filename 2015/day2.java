@@ -8,29 +8,54 @@ import java.util.Scanner;
 public class day2 {
     //    2*l*w + 2*w*h + 2*h*l
     public static void main(String[] args) {
-        ArrayList data = Input("2input");
-        System.out.println(data);
-//        System.out.println(solveCube(data) + "\nsolved");
+        String[][] data = Input("2input");
+//        System.out.println(Arrays.toString(data));
+        System.out.println(solveCubeWrappers(data) + "\nsolved");
     }
 
-    private static String solveCube(String s) {
+    private static int solveCubeWrappers(String[][] data) {
 
-        return "";
+        System.out.println("started execution");
+        int totalInt = 0;
+        for (String[] strArr : data) {
+            System.out.println(Arrays.toString(strArr));
+            int l, w, h;
+            l = Integer.parseInt(strArr[0]);
+            w = Integer.parseInt(strArr[1]);
+            h = Integer.parseInt(strArr[2]);
+
+            int total = (2 * l * w) + (2 * w * h) + (2 * h * l);
+            int[] dim = new int[3];
+            dim[0] = l * w;
+            dim[1] = h * w;
+            dim[2] = h * l;
+
+            Arrays.sort(dim);
+            System.out.println(dim[0]);
+            System.out.println(total);
+
+            total += dim[0];
+            totalInt += total;
+        }
+
+        return totalInt;
     }
 
-    private static ArrayList<String[]> Input(String path) {
-        ArrayList<String[]> arr = new ArrayList<>();
+    private static String[][] Input(String path) {
 
+        String[][] arr = new String[1000][3];
+        int i = 0;
         try {
             File myObj = new File(path);
+            System.out.println(myObj.length());
             Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
+
+            while (myReader.hasNextLine() && i < arr.length) {
                 String data1 = myReader.nextLine();
                 String[] strArray = data1.split("x");
-                System.out.println(Arrays.toString(strArray));
-                arr.add(strArray);
-                System.out.println(Arrays.toString(arr));
-                arr.add(strArray);
+//                System.out.println(Arrays.toString(strArray));
+                arr[i] = strArray;
+                i++;
             }
             myReader.close();
         } catch (FileNotFoundException e) {
@@ -39,5 +64,4 @@ public class day2 {
         }
         return arr;
     }
-
 }
