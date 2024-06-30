@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public class day1 {
     public static void main(String[] args) {
-        String data = read.Input();
+        String data = read.Input("1input");
         System.out.println(data);
         System.out.println(sovleParantheses(data) + "\nsolved");
     }
