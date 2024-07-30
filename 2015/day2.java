@@ -24,17 +24,20 @@ public class day2 {
             w = Integer.parseInt(strArr[1]);
             h = Integer.parseInt(strArr[2]);
 
-            int total = (2 * l * w) + (2 * w * h) + (2 * h * l);
+//            int total = (2 * l * w) + (2 * w * h) + (2 * h * l);
+            // for part two:
+            int total = 0;
             int[] dim = new int[3];
-            dim[0] = l * w;
-            dim[1] = h * w;
-            dim[2] = h * l;
+            dim[0] = l;
+            dim[1] = h;
+            dim[2] = w;
 
             Arrays.sort(dim);
             System.out.println(dim[0]);
-            System.out.println(total);
 
-            total += dim[0];
+            total = total + 2*dim[0] + 2*dim[1];
+            total = total + (l*w*h);
+            System.out.println(total);
             totalInt += total;
         }
 
